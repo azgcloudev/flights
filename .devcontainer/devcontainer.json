@@ -1,0 +1,41 @@
+{
+  "name": "Flights (.NET, Node.js, PostgreSQL)",
+  "dockerComposeFile": "compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/flights",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "10.0"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    }
+  },
+  "forwardPorts": [
+    3000,
+    5000,
+    "postgres:5432"
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Node.js app"
+    },
+    "5000": {
+      "label": "ASP.NET Core app"
+    },
+    "5432": {
+      "label": "PostgreSQL"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "postCreateCommand": "dotnet --info && node --version && npm --version"
+}
